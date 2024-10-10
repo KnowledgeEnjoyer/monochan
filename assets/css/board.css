@@ -1,0 +1,500 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.vt323-regular {
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: "VT323";
+    font-size: 1em;
+    color: green;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+p {
+    color: white;
+}
+
+.r {
+    color: lightgrey;
+}
+
+.blink::after {
+    content: '_';
+    animation: blink-animation 1s steps(2, start) infinite;
+    -webkit-animation: blink-animation 1s steps(2, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+#forbidden {
+    cursor: grab;
+}
+
+/* Código copiado do tema do HIV com leves modificações: */
+body::before {
+    content: "";
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: calc(100% + 32px);
+    height: calc(100% + 32px);
+    background-image: url("https://i.pinimg.com/originals/ef/1d/2d/ef1d2da5c1ad5e8de51c300f2d58137a.png");
+    opacity: 0.5;
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 10000000;
+    animation: ScanlineAnimationLeft 2s linear infinite;
+    pointer-events: none;
+    opacity: 0.04
+}
+
+body::after {
+    content: "";
+    display: block;
+    position: fixed;
+    left: -32px;
+    top: 0;
+    width: calc(100% + 32px);
+    height: calc(100% + 32px);
+    background-image: url("https://i.pinimg.com/originals/ef/1d/2d/ef1d2da5c1ad5e8de51c300f2d58137a.png");
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 10000000;
+    animation: ScanlineAnimationRight .4s linear infinite;
+    pointer-events: none;
+    opacity: 0.04
+}
+
+@keyframes ScanlineAnimationLeft {
+    0% {
+        transform: translateX(0px) translateY(0px)
+    }
+
+    100% {
+        transform: translateX(-32px) translateY(-32px)
+    }
+}
+
+@keyframes ScanlineAnimationRight {
+    0% {
+        transform: translateX(0px) translateY(0px)
+    }
+
+    100% {
+        transform: translateX(32px) translateY(-32px)
+    }
+}
+
+/* Fim do plágio */
+
+input[type="checkbox"]:not(.postAction) {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid darkgreen;
+}
+
+input[type="checkbox"]:not(.postAction):checked {
+    background-image: url("../img/x.svg");
+    background-size: cover;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../img/cmd.png');
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    color: transparent;
+}
+
+i {
+    color: white;
+}
+
+b {
+    color: white;
+    background-color: rgb(51, 51, 51);
+}
+
+u {
+    color: lightgrey;
+}
+
+strong {
+    color: red;
+    font-size: 120%;
+}
+
+green {
+    color: lightgreen;
+}
+
+pink {
+    color: lightcoral;
+}
+
+.reply {
+    max-width: fit-content;
+
+}
+
+#siteBorder {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStDzmUd5fg57FzkXHhFL4GJeJcKwffdXFcAQ&s');
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: index 999;
+    display: flex;
+}
+
+#leftTxtBorder,
+#rightTxtBorder {
+    top: 1%;
+    width: 50%;
+    position: absolute;
+    justify-content: center;
+    line-height: 1vw;
+    display: flex;
+    flex-direction: row;
+}
+
+#leftTxtBorder {
+    left: 1.5vw;
+    justify-content: left;
+}
+
+#rightTxtBorder {
+    right: 1.5vw;
+    justify-content: right;
+}
+
+h2 {
+    color: grey;
+}
+
+#siteBody {
+    background-color: black;
+    overflow: scroll;
+    border-radius: 10px;
+    width: 95vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#navbar {
+    background-color: rgb(68, 68, 68);
+    position: fixed;
+    margin-bottom: 20px;
+    color: greenyellow;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    width: calc(95vw + 40px);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#navbarLeft {
+    padding-left: 10px;
+    width: 100%;
+}
+
+#navbarRight {
+    padding-right: 10px;
+    width: fit-content;
+}
+
+#banner {
+    margin-top: 50px;
+    width: 375px;
+    min-width: 375px;
+    max-width: 375px;
+    height: 125px;
+    min-height: 125px;
+    max-height: 125px;
+    border: 2px dashed green;
+}
+
+#boardName {
+    font-size: 30px;
+    letter-spacing: 5px;
+    color: rgb(0, 168, 0)
+}
+
+#boardDescription {
+    letter-spacing: 2px;
+    color: rgb(0, 116, 0)
+}
+
+#formList {
+    width: 30%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.headerText {
+    color: rgb(0, 168, 0);
+    font-size: 20px;
+}
+
+#formBody {
+    border: 2px solid grey;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px
+}
+
+#formBody {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.formElement {
+    display: flex;
+    flex-direction: row;
+
+    input:not([type="file"]),
+    textarea,
+    input[type="submit"],
+    input[type="password"] {
+        background-color: black;
+        border: 1px solid grey;
+        width: 70%;
+        resize: none;
+        color: white;
+        font-size: 20px;
+    }
+
+    input[type="submit"],
+    input[type="password"] {
+        color: green
+    }
+
+    input[type="file"] {
+        background-color: black;
+        border: 1px solid grey;
+        width: 70%;
+    }
+}
+
+
+.formElement.odd p {
+    font-size: 20px;
+    width: 30%;
+    color: rgb(0, 168, 0);
+}
+
+.formElement.even p {
+    font-size: 20px;
+    width: 30%;
+    color: rgb(0, 83, 0);
+}
+
+#threadsList {
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#threadsListHeader {
+    padding: 10px;
+    border: 2px solid grey;
+    border-bottom: 0px solid transparent;
+    width: 100%;
+    height: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#formListHeader {
+    border: 2px solid grey;
+    border-bottom: 0px solid transparent;
+    width: 100%;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.listBody {
+    padding: 10px;
+    border: 2px solid grey;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+/* ==================================== */
+
+
+.originalPostContainer {
+    border: 2px solid grey;
+}
+
+.replyHeader {
+    background-color: rgb(44, 44, 44);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.postSelect {
+    margin-right: 5px;
+    margin-left: 5px
+}
+
+.postTopic {
+    margin-right: 5px;
+    color: lightskyblue
+}
+
+.postName {
+    margin-right: 5px
+}
+
+.postTime {
+    color: rgb(151, 151, 151);
+    margin-right: 15px
+}
+
+.staffID {
+    color: orangered;
+}
+
+.postID {
+    color: orange;
+}
+
+.originalPostContent {
+    padding: 5px
+}
+
+.originalPostImage {
+    background-size: cover;
+    width: 250px;
+    height: 250px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+#rei {
+    padding-top: 100%;
+    padding-bottom: 50px;
+    animation: blink-animation 0.1s steps(2, start) infinite;
+    -webkit-animation: reiblink 0.1s steps(2, start) infinite;
+    opacity: 0.03;
+}
+
+#reiText {
+    color:grey;
+    opacity: 0.1;
+    animation: blink-animation 0.1s steps(2, start) infinite;
+    -webkit-animation: reiblink 0.1s steps(2, start) infinite;
+}
+
+@keyframes reiblink {
+    to {
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes reiblink {
+    to {
+        visibility: hidden;
+    }
+}
+
+.originalPostText {
+    font-size: 20px;
+    min-height: 260px;
+    max-height: fit-content;
+}
+
+.reply {
+    border: 3px double grey;
+    margin: 5px
+}
+
+.replyHeader {
+    background-color: rgb(44, 44, 44);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.postSelect {
+    margin-right: 5px;
+    margin-left: 5px
+}
+
+.userID {
+    color: greenyellow;
+}
+
+.postBody {
+    background-color: rgba(128, 128, 128, 0.13);
+    padding: 5px;
+    color: lightgrey;
+    font-size: 20px;
+}
+
+#notSeriousBro {
+    padding-top: 15px;
+    color: rgba(255, 255, 255, 0.082);
+}
