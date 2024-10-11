@@ -6,14 +6,23 @@ import (
 	"net/http"
 )
 
+type AiinBEE struct {
+	ThreadTitle string
+	ThreadBody  string
+}
+
 func homePage(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/home.html"))
 	tmpl.Execute(w, nil)
 }
 
 func bPage(w http.ResponseWriter, r *http.Request) {
+	data := AiinBEE{
+		ThreadTitle: "AEWHOOOO",
+		ThreadBody:  "CHANZINHO NOVO, BÊ!",
+	}
 	tmpl := template.Must(template.ParseFiles("templates/b.html"))
-	tmpl.Execute(w, nil)
+	tmpl.Execute(w, data)
 
 }
 
