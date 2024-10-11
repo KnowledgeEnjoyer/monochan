@@ -1,15 +1,15 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
-)
 
-type AiinBEE struct {
-	ThreadTitle string
-	ThreadBody  string
-}
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
+)
 
 func homePage(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/home.html"))
@@ -17,22 +17,28 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 }
 
 func bPage(w http.ResponseWriter, r *http.Request) {
-	data := AiinBEE{
-		ThreadTitle: "AEWHOOOO",
-		ThreadBody:  "CHANZINHO NOVO, BÊ!",
-	}
 	tmpl := template.Must(template.ParseFiles("templates/b.html"))
-	tmpl.Execute(w, data)
+	tmpl.Execute(w, nil)
 
 }
 
 func main() {
-	fs := http.FileServer(http.Dir("assets/"))
-	http.Handle("/static/", http.StripPrefix("/static/", fs))
+	r := mux.NewRouter()
+	db, err := sql.Open("mysql", "monochan-super-user:123@(127.0.0.1:3306)/monochan?parseTime=true")
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	http.HandleFunc("/", homePage)
-	http.HandleFunc("/b", bPage)
+	err = db.Ping()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	r.PathPrefix("/static/").Handler(http.StripPrefix("/static", http.FileServer(http.Dir("assets/"))))
+
+	r.HandleFunc("/", homePage)
+	r.HandleFunc("/b", bPage)
 
 	fmt.Println("Server running localhost:8888")
-	http.ListenAndServe(":8888", nil)
+	http.ListenAndServe(":8888", r)
 }
