@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+
+'''
+- Script for starting the server -
+- Usage: -
+
+
+./start            Runs "go run ./cmd/server.go"
+./start dev        Runs "bin/air"
+'''
+
+from subprocess import call
+from sys import argv
+from os.path import dirname, realpath
+path = dirname(realpath(__file__))
+
+if len(argv) > 1:
+    if argv[1] == "dev":
+        call(f'{path}/bin/air')
+    else:
+        print("Invalid argument.")
+else:
+    call(['go', 'run', f'{path}/cmd/server.go'])

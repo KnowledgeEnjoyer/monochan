@@ -1,0 +1,14 @@
+#!/usr/bin/python3
+
+'''
+- Script for starting the server as developer mode (Using "air") -
+- Usage: -
+
+
+
+./dev              Runs "python3 ./start dev"
+'''
+
+from subprocess import call
+from os.path import dirname, realpath
+call(['python3', f'{dirname(realpath(__file__))}/start', 'dev'])
