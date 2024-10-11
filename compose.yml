@@ -1,0 +1,11 @@
+services:
+  monochan-db-mysql9:
+    image: mysql:9.0
+    ports:
+      - "443:8043"
+    environment:
+      MYSQL_ROOT_PASSWORD: "123"
+      MYSQL_DATABASE: monochan
+      MYSQL_USER: monochan-super-user
+      MYSQL_PASSWORD: "123"
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
