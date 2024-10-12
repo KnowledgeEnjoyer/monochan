@@ -86,6 +86,7 @@
                 </div>
 
                 <div class="listBody">
+                {{range . }}
                     <div class="originalPostContainer">
                         <div class="originalPost">
                             <div class="replyHeader">
@@ -118,10 +119,10 @@
                                     </optgroup>
                                     <optgroup label="};"></optgroup>
                                 </select>
-                                <p class="postTopic">fasdfa</p>
+                                <p class="postTopic">{{ .ThreadTitle }}</p>
                                 <p class="postName" blink="false">by Pepe the Frog</p>
                                 <p class="postTime" blink="false">on
-                                    09/04/2024 as 19:53:02</p>
+                                    09/04/2024 as 19:53:02 ({{ .CreatedAt }})</p>
                                 <p class="staffID" blink="false">MyNameIsPepe@ADMIN</p>
                                 <p class="postID">@1</p>
                             </div>
@@ -136,25 +137,10 @@
                                         <b>JavaScript</b>.
                                         <br>
                                         <br>
-                                        fasuifhsadigds
-                                        <!-- The theme imitates an <b>old computer</b>, and the back-end have <u>a lot of
-                                            functionalities</u>.<br><br>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi ratione cumque
-                                        perspiciatis ipsum laudantium debitis quisquam cupiditate voluptatem porro
-                                        excepturi! Deserunt est pariatur veniam voluptatem omnis animi modi autem
-                                        laborum! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates,
-                                        tenetur eos velit veritatis voluptate rem eligendi deleniti, dolore
-                                        repellendus porro aperiam. Blanditiis praesentium tempore, totam fuga corrupti
-                                        tempora voluptas. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Accusantium cupiditate suscipit nemo consequuntur aspernatur laboriosam nostrum
-                                        quaerat iste, ad praesentium doloribus fugit officiis quod voluptatem saepe
-                                        necessitatibus voluptates? Dolore, voluptate. Lorem ipsum, dolor sit amet
-                                        consectetur adipisicing elit. Dignissimos amet optio magni, voluptas, error
-                                        iusto facere autem neque nihil necessitatibus nostrum quo nemo accusamus vero
-                                        praesentium, sapiente itaque id esse!</p>
-                                </div> -->
-                            </div>
+                                        {{ .ThreadBody }}
+                                </div>
 
+                            {{ range .RecentPosts }}
                             <div class="reply" id="reply1">
                                 <div class="replyHeader">
                                     <input class="postSelect" type="checkbox">
@@ -202,15 +188,18 @@
                                         <p class="r blink">
                                             <green>&gt;this theme</green><br>
                                             I liked it, <strong>ABSOLUTELY BASED!</strong><br><br>
+                                            {{ .PostBody }}
                                             But:<br>
                                             <pink>&lt;missing theme customization</pink><br>
                                             <pink>&lt;and a lot of things</pink></p>
                                     </div>
                                 </div>
                             </div>
+                            {{ end }}
                         </div>
                     </div>
                 </div>
+                {{ end }}
             </div>
             <div style="display:flex; flex-direction:column; align-items: center;">
                 <p id="notSeriousBro">The stories and information posted here are artistic works of fiction and

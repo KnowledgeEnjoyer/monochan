@@ -11,10 +11,10 @@ func Routes() *mux.Router {
 	r := mux.NewRouter()
 
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static", http.FileServer(http.Dir("assets/"))))
-	r.HandleFunc("/", handlers.HomePage)
+	r.HandleFunc("/", handlers.GetHomePage)
 
 	/* /b/ routes */
-	r.HandleFunc("/b", handlers.BPage)
+	r.HandleFunc("/b", handlers.GetBPage)
 
 	return r
 }
