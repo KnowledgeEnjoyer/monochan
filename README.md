@@ -111,9 +111,7 @@ $ ./start
 $ sudo apt install cowsay
 $ cowsay "Eh Th-Th-Th-Th-Th-Th-Th-That's all folks!"
 $ make-me a sanduich
-$ sudo make-me a sanduich
+$ sudo make-me a sandwich
 ```
 #### Step 5: Eh Th-Th-Th-Th-Th-Th-
 Th-Th-That's all folks!
-
-[1]: https://
