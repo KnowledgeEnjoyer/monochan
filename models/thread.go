@@ -2,6 +2,7 @@ package models
 
 import (
 	"log"
+	"strconv"
 	"time"
 
 	"github.com/KnowledgeEnjoyer/monochan/db"
@@ -31,37 +32,48 @@ func NewThread(board, title, body, img string, createAt time.Time) *Thread {
 
 func GetAllThreads() []Thread {
 	db := db.GetDBInstance()
-	query := `
-		SELECT Threads.ThreadId, Board, ThreadTitle, ThreadBody, ThreadImg, Threads.CreatedAt, PostId, PostTitle, PostBody, PostImg, Posts.CreatedAt
-			FROM Threads
-			INNER JOIN 	Posts
-			ON Threads.ThreadId = Posts.ThreadId;
+	queryT := `
+		SELECT ThreadId, Board, ThreadTitle, ThreadBody, ThreadImg, Threads.CreatedAt
+			FROM Threads;
 	`
 	var threads []Thread
 
-	rows, err := db.Query(query)
+	rowsT, err := db.Query(queryT)
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer rows.Close()
 
-	for rows.Next() {
+	defer rowsT.Close()
+
+	for rowsT.Next() {
 		var t Thread
-		var p Post
-		err := rows.Scan(&t.ThreadId, &t.Board, &t.ThreadTitle, &t.ThreadBody, &t.ThreadImg, &t.CreatedAt, &p.PostId, &p.PostTitle, &p.PostBody, &p.PostImg, &p.CreatedAt)
+		err := rowsT.Scan(&t.ThreadId, &t.Board, &t.ThreadTitle, &t.ThreadBody, &t.ThreadImg, &t.CreatedAt)
 		if err != nil {
 			log.Fatal(err)
 		}
-		t.RecentPosts = append(t.RecentPosts, p)
 		threads = append(threads, t)
 	}
 
-	log.Println(threads)
+	for i, v := range threads {
+		queryP := "SELECT PostId, PostTitle, PostBody, PostImg, CreatedAt " +
+			"FROM Posts WHERE ThreadId = " + strconv.Itoa(v.ThreadId) + ";"
+
+		rowsP, err := db.Query(queryP)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		defer rowsP.Close()
+
+		for rowsP.Next() {
+			var p Post
+			rowsP.Scan(&p.PostId, &p.PostTitle, &p.PostBody, &p.PostImg, &p.CreatedAt)
+			v.RecentPosts = append(v.RecentPosts, p)
+		}
+
+		threads[i].RecentPosts = append(threads[i].RecentPosts, v.RecentPosts...)
+	}
 
 	return threads
 
-	// return []Thread{
-	// 	{Board: "b", ThreadTitle: "Animefag", ThreadBody: "Sopinha, bê! CHANZINHO NOVO SAINDO DO FORNINHO BÊ :3", ThreadImg: "/", RecentPosts: posts, CreatedAt: time.Now(), BumpedAt: time.Now()},
-	// 	{Board: "b", ThreadTitle: "SEXTA BUCETAL!", ThreadBody: "Que dia é hoje?", ThreadImg: "/", RecentPosts: posts, CreatedAt: time.Now(), BumpedAt: time.Now()},
-	// }
 }

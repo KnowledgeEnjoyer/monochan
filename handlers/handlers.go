@@ -13,7 +13,6 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetBPage(w http.ResponseWriter, r *http.Request) {
-	// select * from Threads inner join Posts on Threads.ThreadId = Posts.ThreadId
 	threads := models.GetAllThreads()
 	tmpl := template.Must(template.ParseFiles("templates/b.html"))
 
